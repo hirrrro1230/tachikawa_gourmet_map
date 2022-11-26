@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>店舗情報編集</h3>
+            <%= form_with model: @restaurant, url: admin_restaurant_path(@restaurant.id), method: :patch do |f| %>
+                
+                <table class="table table-borderless">
+                     <tr>
+                         <td>店舗画像</td>
+                         <td><%= f.file_field :image, accept: "image/*" %></td>
+                     </tr>
+                     <tr>
+                         <td><label for="inputName">店舗名</label></td>
+                         <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"店舗名"%></td>
+                     </tr>
+                     <tr>
+                         <td><label for="inputAddress">店舗住所</label></td>
+                         <td><%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder:"店舗住所"%></td>
+                     </tr>
+                     <tr>
+                         <td>ジャンル</td>
+                         <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></td>
+                     </tr>
+                     <tr>
+                         <td><label for="inputOpeninHour">営業時間</label></td>
+                         <td><%= f.text_field :opening_hour, autofocus: true, id:"inputOpeninHour", placeholder:"営業時間"%></td>
+                     </tr>
+                </table>
+                <%= f.submit "編集内容を保存", class:"btn btn-success" %>
+            <% end %>
+        </div>
+    </div>
+</div>

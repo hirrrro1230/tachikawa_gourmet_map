@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>店舗詳細</h3>
+            <% if customer_signed_in? && @restaurant.customer_id == current_customer.id && current_customer.email != 'guest@example.com'%>
+                <%= link_to "店舗情報を編集する", edit_restaurant_path(@restaurant.id) %>
+            <% end %>
+            <div>
+                <% if @restaurant.image.attached? %>
+                  <%= image_tag @restaurant.image, size: "200x200" %>
+                <% end %>
+            </div>
+             <table class="table table-borderless">
+             <tr>
+                 <td>店舗名</td>
+                 <td><%= @restaurant.name %></td>
+             </tr>
+             <tr>
+                 <td>店舗住所</td>
+                 <td><%= @restaurant.address %></td>
+             </tr>
+             <tr>
+                 <td>ジャンル</td>
+                 <td><%= @restaurant.genre.name %></td>
+             </tr>
+             <tr>
+                 <td>営業時間</td>
+                 <td><%= @restaurant.opening_hour %></td>
+             </tr>
+             </table>
+    <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>         
+        <%= form_with model: @review, url: restaurant_reviews_path(@restaurant.id) do |f| %>
+        <%#= f.hidden_field :review, :value => @review.id %>
+        <div class="post_form">
+            <%= f.radio_button :overall, 5 ,id: 'star1'%>
+            <label for="star1"><span class="text">最高</span>★</label>
+        
+            <%= f.radio_button :overall, 4 ,id: 'star2'%>
+            <label for="star2"><span class="text">良い</span>★</label>
+        
+            <%= f.radio_button :overall, 3 ,id: 'star3'%>
+            <label for="star3"><span class="text">普通</span>★</label>
+        
+            <%= f.radio_button :overall, 2 ,id: 'star4'%>
+            <label for="star4"><span class="text">悪い</span>★</label>
+        
+            <%= f.radio_button :overall, 1 ,id: 'star5'%>
+            <label for="star5"><span class="text">最悪</span>★</label>
+        </div>
+            <div><%= f.text_area :coment %></div>
+        
+        <%= f.submit 'レビューする', class: "btn btn-success" %>
+        <% end %>
+    <% end %>    
+    <%= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
+        </div>
+    </div>
+</div>

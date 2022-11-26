@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>店舗詳細</h3>
+            
+            <% if @restaurant.image.attached? %>
+              <%= image_tag @restaurant.image, size: "200x200" %>
+             <% end %>
+             <table class="table table-borderless">
+             <tr>
+                 <td>店舗名</td>
+                 <td><%= @restaurant.name %></td>
+             </tr>
+             <tr>
+                 <td>店舗住所</td>
+                 <td><%= @restaurant.address %></td>
+             </tr>
+             <tr>
+                 <td>ジャンル</td>
+                 <td><%= @restaurant.genre.name %></td>
+             </tr>
+             <tr>
+                 <td>営業時間</td>
+                 <td><%= @restaurant.opening_hour %></td>
+             </tr>
+             </table>
+             <%= link_to "編集", edit_admin_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
+        </div>
+    </div>
+</div>

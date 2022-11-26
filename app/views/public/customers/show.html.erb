@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>マイページ</h3>
+            <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>
+                <%= link_to "編集", edit_customer_path(@customer.id) %>
+            <% end %>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>ユーザ名</td>
+                        <td><%= @customer.name %></td>
+                    </tr>   
+                    <tr>
+                        <td>メールアドレス</td>
+                        <td><%= @customer.email %></td>
+                    </tr>
+                </tbody>
+            </table>
+            <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>
+                <%= link_to "店舗投稿一覧", customers_my_page_restaurants_path, class:"btn btn-success" %>
+            <% end %>
+            <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>
+                <%= link_to "レビュー一覧", customers_my_page_reviews_path, class:"btn btn-info" %>
+            <% end %>
+        </div>
+    </div>           
+</div>

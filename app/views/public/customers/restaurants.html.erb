@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3><%= @customer.name %>さんの店舗一覧</h3>
+            <%= link_to "店舗新規投稿へ", new_restaurant_path, class: "btn btn-success" %>
+            <table class="table table-borderless">
+                <th>店舗画像</th>
+                <th>店舗名</th>
+                <th>店舗住所</th>
+                <th>ジャンル</th>
+                <th>営業時間</th>
+                <th></th>
+            <% @restaurants.each do |restaurant| %>
+                <tr>
+                    <td><% if restaurant.image.attached? %>
+                          <%= image_tag restaurant.image, size: "200x200" %>
+                        <% end %>
+                    </td>
+                    <td><%= restaurant.name %></td>
+                    <td><%= restaurant.address %></td>
+                    <td><%= restaurant.genre.name %></td>
+                    <td><%= restaurant.opening_hour %></td>
+                    <td><%= link_to '編集', edit_restaurant_path(restaurant.id), class: "btn btn-success" %></td>
+                </tr>
+            <% end %>
+            </table>
+        </div>
+    </div>
+</div>

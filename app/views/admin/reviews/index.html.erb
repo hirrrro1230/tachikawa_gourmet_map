@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>レビュー一覧</h3>
+            
+            <table class="table table table-borderless">
+                <thead>
+                    <tr>
+                        <th>店舗名</th>
+                        <th>レビュー評価</th>
+                        <th>レビューコメント</th>
+                        <th>レビュー日時</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <% @reviews.each do |review| %>
+                    <tbody>
+                        <tr>
+                            <td><%= review.restaurant.name %></td>
+                            <td>
+                                <span class="star-rating">
+                                 <span class="star-rating-front" style="width: <%= getPercent(review.overall) %>%;">★★★★★</span>
+                                 <span class="star-rating-back">★★★★★</span>
+                                </span>
+                            </td>
+                            <td><%= review.coment %></td>
+                            <td><%= review.created_at %></td>
+                            <td><%= link_to '編集', edit_admin_review_path(review.id), class:"btn btn-outline-info" %></td>
+                            <td><%= link_to "削除", admin_review_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-outline-danger"  %></td>
+                        </tr>
+                    </tbody>
+                <% end %>
+            </table>
+            
+        </div>
+    </div>
+</div>

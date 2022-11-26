@@ -1,0 +1,16 @@
+<div class="container">
+     <div class="row">
+        <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto rounded px-0 my-5">
+            <div>本当に退会しますか？</div>
+            <p>退会すると、会員情報登録や</p>
+            <p>これまでの購入履歴が閲覧できなくなります。</p>
+            <p>退会する場合は、「退会する」をクリックしてください。</p>
+            <%= link_to customers_my_page_path, class:"btn btn-primary" do %>
+            退会しない
+            <% end %>
+            <%= link_to customers_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" do %>
+            退会する
+            <% end %>
+        </div>
+    </div>
+</div

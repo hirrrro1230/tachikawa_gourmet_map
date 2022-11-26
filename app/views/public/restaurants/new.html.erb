@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>店舗新規登録</h3>
+            <%= form_with model: @restaurant, url: restaurants_path do |f| %>
+              <%= f.hidden_field :customer_id, :value => @customer.id %>
+              <p>店舗画像</p>
+                <%= f.file_field :image, accept: "image/*" %>
+              <p>店舗名</p>
+                <%= f.text_field :name %>
+              <p>店舗住所</p>
+                <%= f.text_area :address %>
+              <p>ジャンル</p>
+                <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+              <p>営業時間</p>
+                <%= f.text_field :opening_hour %>
+              <%= f.submit '新規登録', class: "btn btn-success" %>
+            <% end %>
+        </div>
+    </div>
+</div>

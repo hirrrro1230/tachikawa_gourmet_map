@@ -1,0 +1,35 @@
+<div class="container">
+     <div class="row">
+        <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto rounded px-0 my-5">
+            <h3><%= @customer.name %>さんの会員情報編集</h3>
+            <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+            <table class="table table table-borderless">
+                <tbody>
+                    <tr>
+                        <th scope="row">会員ID</th>
+                        <td><%= @customer.id %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inputLastName">ユーザ名</label></th>
+                        <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"ユーザ名"%></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inputEmail">メールアドレス</th>
+                        <td><%= f.text_field :email, autofocus: true, id:"inputEmail", placeholder:"メールアドレス"%></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">会員ステータス</th>
+                        <td>
+                            <%= f.radio_button :is_deleted, false %>
+                            <%= f.label :is_deleted_number_false, '有効' %>
+                            <%= f.radio_button :is_deleted, true %>
+                            <%= f.label :is_deleted_number_false, '退会' %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+                <%= f.submit "変更を保存", class:"btn btn-success" %>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+module Public::RestaurantsHelper
+    
+end

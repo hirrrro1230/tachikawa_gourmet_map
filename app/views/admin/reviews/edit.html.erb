@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <%= link_to 'レビュー一覧に戻る', admin_reviews_path %>
+            <h3>レビュー編集</h3>
+            <%= form_with model: @review, url: review_path(@review.id), method: :patch do |f| %>
+            <table class="table table-borderless">
+                     <tr>
+                         <td>店舗名</td>
+                         <td><%= @review.restaurant.name %></td>
+                     </tr>
+                     <tr>
+                         <td>評価</td>
+                         <td>
+                            <div class="post_form">
+                                <%= f.radio_button :overall, 5 ,id: 'star1'%>
+                                <label for="star1"><span class="text">最高</span>★</label>
+                            
+                                <%= f.radio_button :overall, 4 ,id: 'star2'%>
+                                <label for="star2"><span class="text">良い</span>★</label>
+                            
+                                <%= f.radio_button :overall, 3 ,id: 'star3'%>
+                                <label for="star3"><span class="text">普通</span>★</label>
+                            
+                                <%= f.radio_button :overall, 2 ,id: 'star4'%>
+                                <label for="star4"><span class="text">悪い</span>★</label>
+                            
+                                <%= f.radio_button :overall, 1 ,id: 'star5'%>
+                                <label for="star5"><span class="text">最悪</span>★</label>
+                            </div>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td><label for="inputComent">コメント</label></td>
+                         <td><%= f.text_area :coment, autofocus: true, id:"inputComent", placeholder:"コメント"%></td>
+                     </tr>
+            </table>
+            <%= f.submit "編集内容を保存", class:"btn btn-success" %>
+            
+            <% end %>
+        </div>
+    </div>
+</div>

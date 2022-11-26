@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>店舗一覧</h3>
+            <%= link_to "店舗新規投稿へ", new_admin_restaurant_path, class: "btn btn-success" %>
+            <table class="table table-borderless">
+                <th>店舗画像</th>
+                <th>店舗名</th>
+                <th>店舗住所</th>
+                <th>ジャンル</th>
+                <th>営業時間</th>
+                <th>評価</th>
+            <% @restaurants.each do |restaurant| %>
+                <tr>
+                    <td><% if restaurant.image.attached? %>
+                          <%= image_tag restaurant.image, size: "200x200" %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%= link_to admin_restaurant_path(restaurant.id) do %>
+                        <%= restaurant.name %>
+                        <% end %>
+                    </td>
+                    <td><%= restaurant.address %></td>
+                    <td><%= restaurant.genre.name %></td>
+                    <td><%= restaurant.opening_hour %></td>
+                    <td>
+                        <div class="average-score-display">
+                            <%= restaurant.reviews.average(:overall) %>点
+                        </div>
+                    </td>
+                    <td><%= link_to '編集', edit_admin_restaurant_path(restaurant.id), class:"btn btn-outline-info" %></td>
+                    <td><%= link_to "削除", admin_restaurant_path(restaurant.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-outline-danger"  %></td>
+                </tr>
+            <% end %>
+            </table>
+        </div>
+    </div>
+</div>
