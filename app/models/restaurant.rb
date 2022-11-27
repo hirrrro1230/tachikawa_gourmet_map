@@ -1,5 +1,7 @@
 class Restaurant < ApplicationRecord
      has_one_attached :image
+     geocoded_by :address
+     after_validation :geocode
      has_many :reviews, dependent: :destroy
      belongs_to :genre
      belongs_to :customer

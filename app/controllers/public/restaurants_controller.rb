@@ -39,7 +39,10 @@ class Public::RestaurantsController < ApplicationController
     def index
         @restaurants = Restaurant.all
     end
-
+    
+    def top
+        @restaurants = Restaurant.all
+    end
     
     def restaurant_params
         params.require(:restaurant).permit(:image, :name, :address, :genre_id, :opening_hour, :customer_id, :overall)
