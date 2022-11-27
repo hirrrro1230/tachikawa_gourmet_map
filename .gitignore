@@ -41,4 +41,3 @@ yarn-debug.log*
 
 # api keys
 /.env
-/app/views/public/restaurants/show.html.erb
