@@ -18,15 +18,16 @@
             let map
             let geocoder
             var marker = [];
+            let infoWindow = [];
             var markerData = [ // マーカーを立てる場所名・緯度・経度
             <% @restaurants.each do|restaurant| %>
-  {
-    lat: <%= restaurant.latitude %>,
-    lng: <%= restaurant.longitude %>
-  },
-  <% end %>
-];
-var test ={lat: 35.6978368 , lng: 139.4137252 };
+              {
+                lat: <%= restaurant.latitude %>,
+                lng: <%= restaurant.longitude %>
+              },
+            <% end %>
+            ];
+            var test ={lat: 35.6978368 , lng: 139.4137252 };
             
             const display = document.getElementById('display')
             
@@ -56,7 +57,24 @@ var test ={lat: 35.6978368 , lng: 139.4137252 };
             }
               
               <%# end %>
-            
+            infoWindow[i] = new google.maps.InfoWindow({
+            // 吹き出しの内容
+            content: markerData[i]['address']
+            });
+    
+            // マーカーにクリックイベントを追加
+            markerEvent(i);
+              }
+            }
+    
+            // マーカーをクリックしたら吹き出しを表示
+            function markerEvent(i) {
+              marker[i].addListener('click', function () {
+                infoWindow[i].open(map, marker[i]);
+              });
+            }
+              
+              
             
 
             function codeAddress(){

@@ -42,6 +42,7 @@ class Public::RestaurantsController < ApplicationController
     
     def top
         @restaurants = Restaurant.all
+        
     end
     
     def restaurant_params
