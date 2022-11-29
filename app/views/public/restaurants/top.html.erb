@@ -52,10 +52,10 @@
                         map: map // マーカーを立てる地図を指定
                    });
              　
-
+              let restaurant_id = markerData[i]['restaurant_id']
               infoWindow[i] = new google.maps.InfoWindow({
                 // 吹き出しの内容
-                content: markerData[i]['name']
+                content: `<a href='/restaurants/${ restaurant_id }'>${ markerData[i]['name'] }</a>`
               });
                 console.log(marker[i]);
 
@@ -80,11 +80,6 @@
                 });
             }
             
-            let restaurant_id = markerData[i]['restaurant_id']
-            infoWindow[i] = new google.maps.InfoWindow({
-              // <a>タグでリンクを作成
-              content: `<a href='/restaurants/${ restaurant_id }'>${ markerData[i]['name'] }</a>`
-            });
 
             function codeAddress(){
               let inputAddress = document.getElementById('address').value;
