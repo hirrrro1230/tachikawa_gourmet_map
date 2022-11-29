@@ -23,7 +23,9 @@
             <% @restaurants.each do|restaurant| %>
               {
                 lat: <%= restaurant.latitude %>,
-                lng: <%= restaurant.longitude %>
+                lng: <%= restaurant.longitude %>,
+                name: '<%= restaurant.name %>',
+                restaurant_id: <%= restaurant.id %>
               },
             <% end %>
             ];
@@ -49,33 +51,40 @@
                      position: markerLatLng, // マーカーを立てる位置を指定
                         map: map // マーカーを立てる地図を指定
                    });
-             　} 
+             　
 
-                marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-                });
+              infoWindow[i] = new google.maps.InfoWindow({
+                // 吹き出しの内容
+                content: markerData[i]['name']
+              });
+                console.log(marker[i]);
+
+  
+              // マーカーにクリックイベントを追加
+             markerEvent(i);
+
             }
               
               <%# end %>
-            infoWindow[i] = new google.maps.InfoWindow({
-            // 吹き出しの内容
-            content: markerData[i]['address']
-            });
     
-            // マーカーにクリックイベントを追加
-            markerEvent(i);
-              }
+            //   }
+            // }
+    
             }
-    
+              
+
             // マーカーをクリックしたら吹き出しを表示
             function markerEvent(i) {
-              marker[i].addListener('click', function () {
-                infoWindow[i].open(map, marker[i]);
-              });
+                marker[i].addListener('click', function(e) {
+                    infoWindow[i].open(map, marker[i]);
+                });
             }
-              
-              
             
+            let restaurant_id = markerData[i]['restaurant_id']
+            infoWindow[i] = new google.maps.InfoWindow({
+              // <a>タグでリンクを作成
+              content: `<a href='/restaurants/${ restaurant_id }'>${ markerData[i]['name'] }</a>`
+            });
 
             function codeAddress(){
               let inputAddress = document.getElementById('address').value;
