@@ -6,9 +6,9 @@
               <p>店舗画像</p>
                 <%= f.file_field :image, accept: "image/*" %>
               <p>店舗名</p>
-                <%= f.text_field :name %>
+                <%= f.text_field :name, value: params[:name] %>
               <p>店舗住所</p>
-                <%= f.text_area :address %>
+                <%= f.text_area :address, value: params[:address] %>
               <p>ジャンル</p>
                 <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
               <p>営業時間</p>

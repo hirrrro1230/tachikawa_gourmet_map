@@ -36,7 +36,7 @@
             function initMap(){
               geocoder = new google.maps.Geocoder()
               
-              var map = new google.maps.Map(document.getElementById('map'), {
+              map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 center: test
                   });
@@ -91,6 +91,17 @@
                       map: map,
                       position: results[0].geometry.location
                   });
+                  // 下の1行を追加 
+                  let address = results[0].formatted_address.split(' ')
+                  let full_address = address.slice(1, address.length).join(' ')
+            
+                  
+                  <% if customer_signed_in? %>
+                    $('#display').html(`<a href="/restaurants/new?name=${$('#address').val()}&address=${full_address}">${$('#address').val()}を新規登録する</a>`);
+                  <% else %>
+                    $('#display').html(`<a href="/admin/restaurants/new?name=${$('#address').val()}&address=${full_address}">${$('#address').val()}を新規登録する</a>`);
+                  <% end %>
+                  
                 } else {
                   alert('該当する結果がありませんでした：' + status);
                 }
