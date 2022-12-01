@@ -14,5 +14,18 @@ class Restaurant < ApplicationRecord
          restaurant.reviews.overall.average(:review_id).round(1).to_f*100/5
      end
      
+     def self.looks(search, word)
+         if search == "perfect_match"
+           @restaurant = Restaurant.where("title LIKE?","#{word}")
+         elsif search == "forward_match"
+           @restaurant = Restaurant.where("title LIKE?","#{word}%")
+         elsif search == "backward_match"
+           @restaurant = Restaurant.where("title LIKE?","%#{word}")
+         elsif search == "partial_match"
+           @restaurant = Restaurant.where("title LIKE?","%#{word}%")
+         else
+           @restaurant = Restaurant.all
+         end
+     end
      
 end

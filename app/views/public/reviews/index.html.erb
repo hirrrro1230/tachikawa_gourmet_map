@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             <h3>レビュー一覧</h3>
             
             <table class="table table table-borderless">
@@ -24,11 +24,24 @@
                             </td>
                             <td><%= review.coment %></td>
                             <td><%= review.created_at %></td>
+                            <td>
+                                <% if review.customer == current_customer %>
+                                    <%= link_to '編集', edit_review_path(review.id), class: "btn btn-success" %>
+                                <% end %>
+                            </td>
+                            <td>
+                                <% if review.customer == current_customer %>
+                                    <%= link_to "削除", review_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"  %>
+                                <% end %>
+                            </td>
                         </tr>
                     </tbody>
                 <% end %>
             </table>
             
+        </div>
+        <div class="col-md-4">
+            <%= render 'searches/search', searches: @searches %>
         </div>
     </div>
 </div>

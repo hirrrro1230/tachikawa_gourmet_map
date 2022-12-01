@@ -21,6 +21,12 @@ Rails.application.routes.draw do
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
+  
+  
+  get "search" => "searches#search"
+  get "search_result" => "searchs#seach_result"
+  resources :searches, only: :index
+
 
   get 'admin/customers' => 'admin/customers#index'
   scope module: :public do
