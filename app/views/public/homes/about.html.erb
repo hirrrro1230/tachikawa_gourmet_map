@@ -7,5 +7,11 @@
             立川グルメマップがあなたの居場所や気分に合わせて</br>
             ぴったりのお店をお調べいたします！</div>
         </div>
+    <% if customer_signed_in? %>
+        <div class="col-md-4">
+            
+            <%= render 'public/searches/search', searches: @searches %>
+        </div>
+    <% end %>
     </div>
 </div>

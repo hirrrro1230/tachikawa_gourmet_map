@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-       <div class="col-md-10 col-md-offset-1">
+       <div class="col-md-8 col-md-offset-1">
            <h3>グルメマップ</h3>
             <input id="address" type="textbox" value="立川市">
             <input type="button" value="Encode" onclick="codeAddress()">
@@ -112,5 +112,11 @@
             <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
             
        </div>
+      <% if customer_signed_in? %>
+       <div class="col-md-4">
+            
+            <%= render 'public/searches/search', searches: @searches %>
+        </div>
+      <% end %>
     </div>
 </div>

@@ -52,8 +52,15 @@
         <%= f.submit 'レビューする', class: "btn btn-success" %>
         <% end %>
     <% end %>    
-    <%= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
-    
+    <% if customer_signed_in? && @restaurant.customer_id == current_customer.id && current_customer.email != 'guest@example.com'%>
+        <%= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
+    <% end %>
         </div>
+    <% if customer_signed_in? %>
+        <div class="col-md-4">
+            
+            <%= render 'public/searches/search', searches: @searches %>
+        </div>
+    <% end %>
     </div>
 </div>

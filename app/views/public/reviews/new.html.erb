@@ -25,5 +25,11 @@
              
              <%= link_to "この店舗のレビューをする", new_review_path, class: "btn btn-success" %>
         </div>
+    <% if customer_signed_in? %>
+        <div class="col-md-4">
+            
+            <%= render 'public/searches/search', searches: @searches %>
+        </div>
+    <% end %>
     </div>
 </div>

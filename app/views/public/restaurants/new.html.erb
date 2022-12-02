@@ -17,5 +17,11 @@
               <%= f.submit '新規登録', class: "btn btn-success" %>
             <% end %>
         </div>
+      <% if customer_signed_in? %>
+        <div class="col-md-4">
+            
+            <%= render 'public/searches/search', searches: @searches %>
+        </div>
+      <% end %>
     </div>
 </div>

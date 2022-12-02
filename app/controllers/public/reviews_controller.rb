@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+    before_action :authenticate_customer!, only: [:edit, :create, :destroy]
     def new
        @review = Review.new 
     end
@@ -14,6 +15,12 @@ class Public::ReviewsController < ApplicationController
     
     def index
        @reviews = Review.all
+    end
+    
+    def show
+        @review = Review.find(params[:id])
+        @comments = @review.comments  #投稿詳細に関連付けてあるコメントを全取得
+        @comment = current_customer.comments.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
     end
     
     def edit

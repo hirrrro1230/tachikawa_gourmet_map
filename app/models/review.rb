@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
     belongs_to :customer
     belongs_to :restaurant
+    has_many :comments, dependent: :destroy
     
     validates :overall, numericality: {
     less_than_or_equal_to: 5,

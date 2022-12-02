@@ -24,5 +24,11 @@
                 <%= link_to "レビュー一覧", customers_my_page_reviews_path, class:"btn btn-info" %>
             <% end %>
         </div>
+    <% if customer_signed_in? %>
+        <div class="col-md-4">
+            
+            <%= render 'public/searches/search', searches: @searches %>
+        </div>
+    <% end %>
     </div>           
 </div>

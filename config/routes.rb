@@ -22,11 +22,12 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
   
+  scope module: :public do
+    get "search" => "searches#search"
+    get "search_result" => "searchs#seach_result"
+    resources :searches, only: :index
+  end
   
-  get "search" => "searches#search"
-  get "search_result" => "searchs#seach_result"
-  resources :searches, only: :index
-
 
   get 'admin/customers' => 'admin/customers#index'
   scope module: :public do
@@ -54,10 +55,14 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   end
   
   scope module: :public do
-    resources :reviews, only: [:index, :edit, :update, :destroy]
+    resources :reviews, only: [:index, :edit, :update, :destroy, :show]
   end
   namespace :admin do
     resources :reviews, only: [:new, :index, :show, :edit, :update, :destroy]
+  end
+  
+  scope module: :public do
+    resources :comments
   end
   
   namespace :admin do

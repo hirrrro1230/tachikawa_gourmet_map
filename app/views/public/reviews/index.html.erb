@@ -22,7 +22,11 @@
                                  <span class="star-rating-back">★★★★★</span>
                                 </span>
                             </td>
-                            <td><%= review.coment %></td>
+                            <td>
+                                <%= link_to review_path(review.id) do %>
+                                <%= review.coment %>
+                                <% end %>
+                            </td>
                             <td><%= review.created_at %></td>
                             <td>
                                 <% if review.customer == current_customer %>
@@ -40,8 +44,11 @@
             </table>
             
         </div>
+    <% if customer_signed_in? %>
         <div class="col-md-4">
-            <%= render 'searches/search', searches: @searches %>
+            
+            <%= render 'public/searches/search', searches: @searches %>
         </div>
+    <% end %>
     </div>
 </div>
