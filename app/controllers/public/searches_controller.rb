@@ -1,20 +1,16 @@
-class SearchesController < ApplicationController
+class Public::SearchesController < ApplicationController
     before_action :authenticate_customer!
-
-  def search
+  
+  def search_result
     @range = params[:range]
-    if @range == "Restaurant"
+    if @range == "店舗"
         
         @restaurants = Restaurant.looks(params[:search], params[:word])
         #redirect_to search_result_path
     else
         
-        @Genres = Genre.looks(params[:search], params[:word])
+        @genres = Genre.looks(params[:search], params[:word])
         #redirect_to search_result_path
     end
-  end
-  
-  def search_result
-      
   end
 end

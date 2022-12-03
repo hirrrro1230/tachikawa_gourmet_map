@@ -1,5 +1,5 @@
 class Genre < ApplicationRecord
-    has_many :restaurants, dependent: :destroy
+    has_many :restaurants
     validates :name, presence: true
     
     def self.looks(search, word)

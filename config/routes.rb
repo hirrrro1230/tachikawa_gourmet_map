@@ -24,7 +24,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   
   scope module: :public do
     get "search" => "searches#search"
-    get "search_result" => "searchs#seach_result"
+    get "search_result" => "searches#search_result"
     resources :searches, only: :index
   end
   
