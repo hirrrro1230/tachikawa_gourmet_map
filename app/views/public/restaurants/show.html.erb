@@ -55,6 +55,32 @@
     <% if customer_signed_in? && @restaurant.customer_id == current_customer.id && current_customer.email != 'guest@example.com'%>
         <%= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
     <% end %>
+        
+        
+            <h4 class = "h4text"><%= @restaurant.name %>のレビュー一覧</h4>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>レビュー評価</th>
+                            <th>レビューコメント</th>
+                            <th>レビュー日時</th>
+                        </tr>
+                    </thead>
+                    <% @reviews.each do |review| %>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="star-rating">
+                                 <span class="star-rating-front" style="width: <%= getPercent(review.overall) %>%;">★★★★★</span>
+                                 <span class="star-rating-back">★★★★★</span>
+                                </span>
+                            </td>
+                            <td><%= review.coment %></td>
+                            <td><%= review.created_at %></td>
+                        </tr>
+                    </tbody>
+                    <% end %>
+                </table>
         </div>
     <% if customer_signed_in? %>
         <div class="col-md-4">
