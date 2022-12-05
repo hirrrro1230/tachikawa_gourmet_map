@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            <h3 class="h3text">レビュー詳細</h4>
             <table class="table table table-borderless">
                 <thead>
                     <tr>
@@ -26,11 +27,25 @@
             </table>
             <h4 class="h4text">コメント一覧</h4>
             <div>
-                <% @comments.each do |comment| %>
-                    <%= comment.customer.name %>
-                    <%= comment.comment_content %>
-                    <%= comment.created_at %>
-                <% end %>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <td>ユーザ名</td>
+                            <td>コメント</td>
+                            <td>コメント時間</td>
+                        </tr>
+                    </thead>
+                    <% @comments.each do |comment| %>
+                    <tbody>
+                        <tr>
+                            <td><%= comment.customer.name %></td>
+                            <td><%= comment.comment_content %></td>
+                            <td><%= comment.created_at %></td>
+                        </tr>
+                    </tbody>
+                    <% end %>
+                </table>
+                
             </div>
             <h4 class="h4text">レビューコメント欄</h4>
             <div>
