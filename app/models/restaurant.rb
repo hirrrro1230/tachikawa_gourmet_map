@@ -16,16 +16,30 @@ class Restaurant < ApplicationRecord
      
      def self.looks(search, word)
          if search == "perfect_match"
-           @restaurant = Restaurant.where("name LIKE?","#{word}")
+           @restaurant = Restaurant.where("name LIKE?","#{word}").or(Restaurant.where"address LIKE?","#{word}")
          elsif search == "forward_match"
-           @restaurant = Restaurant.where("name LIKE?","#{word}%")
+           @restaurant = Restaurant.where("name LIKE?","#{word}%").or(Restaurant.where"address LIKE?","#{word}")
          elsif search == "backward_match"
-           @restaurant = Restaurant.where("name LIKE?","%#{word}")
+           @restaurant = Restaurant.where("name LIKE?","%#{word}").or(Restaurant.where"address LIKE?","%#{word}")
          elsif search == "partial_match"
-           @restaurant = Restaurant.where("name LIKE?","%#{word}%")
+           @restaurant = Restaurant.where("name LIKE?","%#{word}%").or(Restaurant.where"address LIKE?","%#{word}%")
          else
            @restaurant = Restaurant.all
          end
      end
+     
+     #def self.looks(search, word)
+         #if search == "perfect_match"
+           #@restaurant = Restaurant.where("address LIKE?","#{word}")
+         #elsif search == "forward_match"
+           #@restaurant = Restaurant.where("address LIKE?","#{word}%")
+         #elsif search == "backward_match"
+           #@restaurant = Restaurant.where("address LIKE?","%#{word}")
+         #elsif search == "partial_match"
+           #@restaurant = Restaurant.where("address LIKE?","%#{word}%")
+         #else
+           #@restaurant = Restaurant.all
+         #end
+     #end
      
 end

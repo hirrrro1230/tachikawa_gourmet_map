@@ -13,7 +13,7 @@ class Public::SearchesController < ApplicationController
         @genres = Genre.looks(params[:search], params[:word])
         #redirect_to search_result_path
     elsif @range == "住所"
-        address = Restaurant.find_by(address: params[:word])
+        @address = Restaurant.find_by(address: params[:word])
         @restaurants = Restaurant.looks(params[:search], params[:word])
         
     else
