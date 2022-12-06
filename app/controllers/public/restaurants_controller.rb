@@ -9,10 +9,18 @@ class Public::RestaurantsController < ApplicationController
         @customer = current_customer
         customer_id = current_customer.id
         @restaurant = Restaurant.create(restaurant_params)
-        if @restaurant.save
-            redirect_to restaurant_path(@restaurant.id)
+        if params[:post]
+            if @restaurant.save
+                redirect_to restaurant_path(@restaurant.id)
+            else
+                render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+            end
         else
-            render :new
+          if @restaurant.update(is_draft: true)
+            redirect_to customer_path(current_customer), notice: "投稿を下書き保存しました"
+          else
+            render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+          end
         end
     end
     

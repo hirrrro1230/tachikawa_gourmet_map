@@ -7,6 +7,14 @@ class Restaurant < ApplicationRecord
      belongs_to :customer
      has_many :favorites, dependent: :destroy
      
+    with_options presence: true, on: :publicize do
+        validates :restaurant
+        validates :serving
+        validates :name
+    end
+    
+    
+     
      def avg_score
           restaurant.reviews.overall.average(:review_id).round(1)
      end
