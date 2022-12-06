@@ -46,6 +46,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     patch 'restaurants/:id' => 'restaurants#update', as: 'update_restaurant'
     resources :restaurants, except: [:update] do
         resources :reviews, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
     end
   end
   namespace :admin do
@@ -68,6 +69,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
+  
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

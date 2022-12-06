@@ -5,6 +5,7 @@ class Restaurant < ApplicationRecord
      has_many :reviews, dependent: :destroy
      belongs_to :genre
      belongs_to :customer
+     has_many :favorites, dependent: :destroy
      
      def avg_score
           restaurant.reviews.overall.average(:review_id).round(1)
@@ -28,6 +29,8 @@ class Restaurant < ApplicationRecord
          end
      end
      
+     
+     
      #def self.looks(search, word)
          #if search == "perfect_match"
            #@restaurant = Restaurant.where("address LIKE?","#{word}")
@@ -41,5 +44,9 @@ class Restaurant < ApplicationRecord
            #@restaurant = Restaurant.all
          #end
      #end
+     
+    def favorited_by?(customer)
+        favorites.exists?(customer_id: customer.id)
+    end
      
 end

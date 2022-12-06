@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
   has_many :restaurants
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   def self.guest
       find_or_create_by!(name: 'ゲストユーザ', email: 'guest@example.com') do |customer|
