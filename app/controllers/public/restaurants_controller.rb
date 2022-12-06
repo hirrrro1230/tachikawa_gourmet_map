@@ -17,7 +17,7 @@ class Public::RestaurantsController < ApplicationController
             end
         else
           if @restaurant.update(is_draft: true)
-            redirect_to customer_path(current_customer), notice: "投稿を下書き保存しました"
+            redirect_to restaurant_path(current_customer), notice: "投稿を下書き保存しました"
           else
             render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
           end
@@ -36,11 +36,21 @@ class Public::RestaurantsController < ApplicationController
     
     def update
         @restaurant = Restaurant.find(params[:id])
-        if @restaurant.update!(restaurant_params)
-            redirect_to restaurant_path(@restaurant.id), notice: '店舗情報を更新しました。'
-        else
-            flash.now[:alert] = '情報を入力してください。'
-            render :edit
+        if params[:publicize_draft]
+            @restaurant.attributes = restaurant_params.merge(is_draft: false)
+            if @restaurant.save(context: :publicize)
+                redirect_to restaurant_path(@restaurant.id), notice: "下書きの店舗を公開しました！"
+            else
+                @restaurant.is_draft = true
+                render :edit, alert: "店舗を公開できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+            end
+        elsif params[:update_post]
+            @restaurant.attributes = restaurant_params
+            if @restaurant.save(context: :publicize)
+                redirect_to restaurant_path(@restaurant.id), notice: '店舗情報を更新しました。'
+            else
+                render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+            end
         end
     end
             
