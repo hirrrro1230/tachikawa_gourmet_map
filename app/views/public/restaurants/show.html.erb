@@ -27,6 +27,16 @@
                  <td>営業時間</td>
                  <td><%= @restaurant.opening_hour %></td>
              </tr>
+             <tr>
+                 <td>公開/下書き</td>
+                 <td>
+                     <% if @restaurant.is_draft? %>
+                     下書き
+                     <% else %>
+                     公開
+                     <% end %>
+                 </td>
+             </tr>
              </table>
     <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>         
         <%= form_with model: @review, url: restaurant_reviews_path(@restaurant.id) do |f| %>

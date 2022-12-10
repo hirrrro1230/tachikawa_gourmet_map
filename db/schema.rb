@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_041813) do
     t.string "opening_hour", null: false
     t.float "latitude"
     t.float "longitude"
-    t.boolean "is_draft"
+    t.boolean "is_draft", default: true, null: false
   end
 
   create_table "reviews", force: :cascade do |t|

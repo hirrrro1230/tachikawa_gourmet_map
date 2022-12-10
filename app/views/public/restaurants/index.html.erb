@@ -14,6 +14,7 @@
                 <th>評価</th>
                 
             <% @restaurants.each do |restaurant| %>
+            <% unless restaurant.is_draft? %>
                 <tr>
                     <td><% if restaurant.image.attached? %>
                           <%= image_tag restaurant.image, size: "200x200" %>
@@ -41,6 +42,7 @@
                     </td>
                     
                 </tr>
+            <% end %>
             <% end %>
             </table>
         </div>
