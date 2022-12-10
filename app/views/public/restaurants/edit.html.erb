@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h3>店舗情報編集</h3>
+            <h3 class = "h3text">店舗情報編集</h3>
             <%= form_with model: @restaurant, url: update_restaurant_path(@restaurant.id), method: :patch do |f| %>
                 
                 <table class="table table-borderless">

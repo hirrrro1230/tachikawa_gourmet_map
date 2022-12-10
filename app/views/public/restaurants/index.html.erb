@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h3>店舗一覧</h3>
+            <h3 class="h3text">店舗一覧</h3>
             <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>
                 <%= link_to "店舗新規投稿へ", new_restaurant_path, class: "btn btn-success" %>
             <% end %>

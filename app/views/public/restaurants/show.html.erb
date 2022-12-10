@@ -62,9 +62,9 @@
         <%= f.submit 'レビューする', class: "btn btn-success" %>
         <% end %>
     <% end %>    
-    <% if customer_signed_in? && @restaurant.customer_id == current_customer.id && current_customer.email != 'guest@example.com'%>
-        <%= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
-    <% end %>
+    <%# if customer_signed_in? && @restaurant.customer_id == current_customer.id && current_customer.email != 'guest@example.com'%>
+        <%#= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
+    <%# end %>
     <h3 class="h3text"></h3>
     <% if @restaurant.favorited_by?(current_customer) %>
     <p>

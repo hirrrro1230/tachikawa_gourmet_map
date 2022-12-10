@@ -18,7 +18,7 @@
                 </tbody>
             </table>
             <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>
-                <%= link_to "店舗投稿一覧", customers_my_page_restaurants_path, class:"btn btn-success" %>
+                <%= link_to "公開店舗・下書き店舗一覧", customers_my_page_restaurants_path, class:"btn btn-success" %>
             <% end %>
             <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>
                 <%= link_to "レビュー一覧", customers_my_page_reviews_path, class:"btn btn-info" %>
