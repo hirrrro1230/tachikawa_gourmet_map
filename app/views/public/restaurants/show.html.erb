@@ -66,19 +66,9 @@
         <%#= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
     <%# end %>
     <h3 class="h3text"></h3>
-    <% if @restaurant.favorited_by?(current_customer) %>
-    <p>
-      <%= link_to restaurant_favorites_path(@restaurant), method: :delete do %>
-        ♥<%= @restaurant.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to restaurant_favorites_path(@restaurant), method: :post do %>
-        ♡<%= @restaurant.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% end %>
+    <div id = "like_<%= @restaurant.id %>">
+      <%= render partial: "public/favorites/like", locals: { restaurant: @restaurant } %>
+    </div>
         
         
             <h4 class = "h4text"><%= @restaurant.name %>のレビュー一覧</h4>

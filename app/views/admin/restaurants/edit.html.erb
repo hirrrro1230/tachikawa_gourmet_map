@@ -26,7 +26,8 @@
                          <td><%= f.text_field :opening_hour, autofocus: true, id:"inputOpeninHour", placeholder:"営業時間"%></td>
                      </tr>
                 </table>
-                <%= f.submit "編集内容を保存", class:"btn btn-success" %>
+                <%= f.select :is_draft, [['下書き保存',true],['新規登録',false]], { include_blank: false, selected: 0 } %>
+                <%= f.submit '保存', class: "btn btn-outline-secondary" %>
                 <%= link_to "店舗詳細に戻る", admin_restaurant_path(@restaurant.id) %>
             <% end %>
         </div>

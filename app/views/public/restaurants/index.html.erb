@@ -12,12 +12,14 @@
                 <th>ジャンル</th>
                 <th>営業時間</th>
                 <th>評価</th>
-                
+                <th>いいね！</th>
             <% @restaurants.each do |restaurant| %>
             <% unless restaurant.is_draft? %>
                 <tr>
-                    <td><% if restaurant.image.attached? %>
-                          <%= image_tag restaurant.image, size: "200x200" %>
+                    <td><%= link_to restaurant_path(restaurant.id) do %>
+                            <% if restaurant.image.attached? %>
+                              <%= image_tag restaurant.image, size: "200x200" %>
+                            <% end %>
                         <% end %>
                     </td>
                     <td>
@@ -40,7 +42,21 @@
                          </div>
                         <!--</div>-->
                     </td>
-                    
+                    <td>
+                        <% if restaurant.favorited_by?(current_customer) %>
+                            <p>
+                              <%= link_to restaurant_favorites_path(restaurant), method: :delete, remote: true do %>
+                                ♥<%= restaurant.favorites.count %>
+                              <% end %>
+                            </p>
+                            <% else %>
+                            <p>
+                              <%= link_to restaurant_favorites_path(restaurant), method: :post, remote: true do %>
+                                ♡<%= restaurant.favorites.count %>
+                              <% end %>
+                            </p>
+                        <% end %>
+                    </td>
                 </tr>
             <% end %>
             <% end %>

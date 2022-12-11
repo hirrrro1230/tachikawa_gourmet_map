@@ -4,4 +4,6 @@ class Customers::SessionsController < Devise::SessionsController
     sign_in customer
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
+
+  
 end

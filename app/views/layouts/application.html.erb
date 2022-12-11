@@ -47,7 +47,7 @@
               <%= link_to 'グルメマップ', root_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: 'nav-link text-dark' %>
             </li>
             <% elsif admin_signed_in? %>
             <li class="nav-item">
@@ -66,7 +66,7 @@
               <%= link_to 'グルメマップ', root_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: 'nav-link text-dark' %>
             </li>
             
             

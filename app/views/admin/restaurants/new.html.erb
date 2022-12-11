@@ -13,7 +13,8 @@
                 <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
               <p>営業時間</p>
                 <%= f.text_field :opening_hour %>
-              <%= f.submit '新規登録', class: "btn btn-success" %>
+              <%= f.select :is_draft, [['下書き保存',true],['新規登録',false]], { include_blank: false, selected: 0 } %>
+              <%= f.submit '保存', class: "btn btn-outline-secondary" %>
             <% end %>
         </div>
     </div>

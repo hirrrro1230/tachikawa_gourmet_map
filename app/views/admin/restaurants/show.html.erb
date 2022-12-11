@@ -23,6 +23,16 @@
                  <td>営業時間</td>
                  <td><%= @restaurant.opening_hour %></td>
              </tr>
+             <tr>
+                 <td>公開/下書き</td>
+                 <td>
+                     <% if @restaurant.is_draft? %>
+                     下書き
+                     <% else %>
+                     公開
+                     <% end %>
+                 </td>
+             </tr>
              </table>
              <%= link_to "編集", edit_admin_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
              
