@@ -1,13 +1,13 @@
-<% if @restaurant.favorited_by?(current_customer) %>
+<% if restaurant.favorited_by?(current_customer) %>
     <p>
-      <%= link_to restaurant_favorites_path(@restaurant), method: :delete do %>
-        ♥<%= @restaurant.favorites.count %> いいね
+      <%= link_to restaurant_favorites_path(restaurant), method: :delete, remote: true do %>
+        ♥<%= restaurant.favorites.count %> いいね
       <% end %>
     </p>
     <% else %>
     <p>
-      <%= link_to restaurant_favorites_path(@restaurant), method: :post do %>
-        ♡<%= @restaurant.favorites.count %> いいね
+      <%= link_to restaurant_favorites_path(restaurant), method: :post, remote: true do %>
+        ♡<%= restaurant.favorites.count %> いいね
       <% end %>
     </p>
 <% end %>
