@@ -22,6 +22,11 @@
                         </td>
                         <td><%= @review.coment %></td>
                         <td><%= @review.created_at %></td>
+                        <td>
+                            <% if @review.customer == current_customer %>
+                                <%= link_to '編集', edit_review_path(@review.id), class: "btn btn-success" %>
+                            <% end %>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -41,6 +46,7 @@
                             <td><%= comment.customer.name %></td>
                             <td><%= comment.comment_content %></td>
                             <td><%= comment.created_at %></td>
+                            
                         </tr>
                     </tbody>
                     <% end %>

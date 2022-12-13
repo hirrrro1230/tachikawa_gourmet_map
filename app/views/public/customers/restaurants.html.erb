@@ -22,6 +22,7 @@
                         <td><%= restaurant.genre.name %></td>
                         <td><%= restaurant.opening_hour %></td>
                         <td><%= link_to '編集', edit_restaurant_path(restaurant.id), class: "btn btn-success" %></td>
+                        <td><%= link_to '削除', restaurant_path(restaurant.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
                     </tr>
                 <% end %>
             <% end %>
@@ -33,6 +34,7 @@
                 <th>店舗住所</th>
                 <th>ジャンル</th>
                 <th>営業時間</th>
+                <th></th>
                 <th></th>
             <% @restaurants.each do |restaurant| %>
                 <% if restaurant.is_draft? %>
@@ -46,6 +48,7 @@
                         <td><%= restaurant.genre.name %></td>
                         <td><%= restaurant.opening_hour %></td>
                         <td><%= link_to '編集', edit_restaurant_path(restaurant.id), class: "btn btn-success" %></td>
+                        <td><%= link_to '削除', restaurant_path(restaurant.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
                     </tr>
                 <% end %>
             <% end %>

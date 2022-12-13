@@ -35,8 +35,11 @@
                          <td><%= f.text_area :coment, autofocus: true, id:"inputComent", placeholder:"コメント"%></td>
                      </tr>
             </table>
-            <%= f.submit "編集内容を保存", class:"btn btn-success" %>
-            
+                <%= f.submit "編集内容を保存", class:"btn btn-success" %>
+                <% if @review.customer == current_customer %>
+                    <%= link_to "削除", review_path(@review.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"  %>
+                <% end %>
+                            
             <% end %>
         </div>
     <% if customer_signed_in? %>

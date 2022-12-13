@@ -28,7 +28,8 @@
                 </table>
                 <%= f.select :is_draft, [['下書き保存',true],['新規登録',false]], { include_blank: false, selected: 0 } %>
                 <%= f.submit '保存', class: "btn btn-outline-secondary" %>
-                <%= link_to "店舗詳細に戻る", restaurant_path(@restaurant.id) %>
+                <p><%= link_to "店舗詳細に戻る", restaurant_path(@restaurant.id) %></p>
+                <p><%= link_to '削除', restaurant_path(@restaurant.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></p>
             <% end %>
         </div>
     <% if customer_signed_in? %>

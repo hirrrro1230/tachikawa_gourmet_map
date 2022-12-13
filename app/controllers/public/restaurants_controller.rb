@@ -34,6 +34,12 @@ class Public::RestaurantsController < ApplicationController
             render :edit
         end
     end
+    
+    def destroy
+        @restaurant = Restaurant.find(params[:id])
+        @restaurant.destroy
+        redirect_to restaurants_path, notice: '店舗を削除しました'
+    end
             
     
     def index

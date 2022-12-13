@@ -30,7 +30,7 @@ class Public::ReviewsController < ApplicationController
     def update
         @review = Review.find(params[:id])
         if @review.update(review_params)
-            redirect_to customers_my_page_reviews_path, notic: 'レビューを更新しました。'
+            redirect_to reviews_path, notice: 'レビューを更新しました。'
         else
             flash.now[:alert] = '情報を入力してください'
             render :edit
@@ -40,7 +40,7 @@ class Public::ReviewsController < ApplicationController
     def destroy
         @review = Review.find(params[:id])
         @review.destroy
-        redirect_to customers_my_page_reviews_path, notice: 'レビューを削除しました。'
+        redirect_to reviews_path, notice: 'レビューを削除しました。'
     end
     
     def review_params
