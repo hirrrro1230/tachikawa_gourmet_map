@@ -1,4 +1,5 @@
 class Public::RestaurantsController < ApplicationController
+    before_action :authenticate_customer!
     
     def new
         @customer = current_customer
@@ -23,6 +24,9 @@ class Public::RestaurantsController < ApplicationController
     
     def edit
         @restaurant = Restaurant.find(params[:id])
+        if @restaurant.customer != current_customer
+            redirect_to restaurants_path
+        end
     end
     
     def update
