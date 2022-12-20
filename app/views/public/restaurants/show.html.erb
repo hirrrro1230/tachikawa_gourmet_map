@@ -66,9 +66,11 @@
         <%#= link_to "編集", edit_restaurant_path(@restaurant.id), class:"btn btn-outline-success" %>
     <%# end %>
     <h3 class="h3text"></h3>
+    <% if customer_signed_in? && current_customer.email != 'guest@example.com'%>  
     <div id = "like_<%= @restaurant.id %>">
       <%= render partial: "public/favorites/like", locals: { restaurant: @restaurant } %>
     </div>
+    <% end %>
         
         
             <h4 class = "h4text"><%= @restaurant.name %>のレビュー一覧</h4>
